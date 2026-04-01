@@ -11,7 +11,7 @@ class LoginScreen extends StatelessWidget {
     final TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('로그인 화면, 스테이트리스 위젯 버전')),
+      appBar: AppBar(title: const Text('로그인 화면')),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
