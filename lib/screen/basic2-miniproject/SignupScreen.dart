@@ -178,46 +178,49 @@ class _SignupScreenState extends State<SignupScreen> {
 
               // [ElevatedButton] 제출 버튼
               ElevatedButton(
-                onPressed: () {
-                  String food = '';
-                  if (_isKoreanSelected)  food += '한식 ';
-                  if (_isChineseSelected) food += '중식 ';
-                  if (_isJapaneseSelected) food += '일식 ';
-
-                  // _showToast(context,
-                  //     '성별: ${_selectedGender ?? "선택 안됨"}\n선호 음식: ${food.isEmpty ? "선택 안됨" : food}');
-                  // 화면 중앙에 다이얼로그 뛰우기 작업.
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: const Text('가입 정보 확인'),
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min, // 내용만큼만 높이 차지
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('이메일: ${_emailController.text}'),
-                            Text('패스워드: ${_passwordController.text}'), // 마스킹 없이 실제값 출력됨
-                            Text('성별: ${_selectedGender ?? "선택 안됨"}'),
-                            Text('선호 음식: ${food.isEmpty ? "선택 안됨" : food}'),
-                          ],
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context), // 창 닫기
-                            child: const Text('확인'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
+                onPressed: () => _showResultDialog(),
                 child: const Text('회원 가입'),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  void _showResultDialog() {
+    // 다이얼로그 창 출력하는 기능 외부로 빼기.
+    String food = '';
+    if (_isKoreanSelected) food += '한식 ';
+    if (_isChineseSelected) food += '중식 ';
+    if (_isJapaneseSelected) food += '일식 ';
+
+    // _showToast(context,
+    //     '성별: ${_selectedGender ?? "선택 안됨"}\n선호 음식: ${food.isEmpty ? "선택 안됨" : food}');
+    // 화면 중앙에 다이얼로그 뛰우기 작업.
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('가입 정보 확인'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min, // 내용만큼만 높이 차지
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('이메일: ${_emailController.text}'),
+              Text('패스워드: ${_passwordController.text}'), // 마스킹 없이 실제값 출력됨
+              Text('성별: ${_selectedGender ?? "선택 안됨"}'),
+              Text('선호 음식: ${food.isEmpty ? "선택 안됨" : food}'),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context), // 창 닫기
+              child: const Text('확인'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

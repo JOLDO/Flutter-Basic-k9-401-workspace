@@ -110,9 +110,9 @@ class MyAppTest extends StatelessWidget {
                 Center(
                   child: GestureDetector(
                     // 기본 옵션1
-                    onTap: () => print('on tap'),
-                    onDoubleTap: () => print('on double tap'),
-                    onLongPress: () => print('on long press'),
+                    // onTap: () => print('on tap'),
+                    // onDoubleTap: () => print('on double tap'),
+                    // onLongPress: () => print('on long press'),
 
                     // 기본 옵션2
                     // 샘플 추가 옵션 확인.
@@ -131,20 +131,20 @@ class MyAppTest extends StatelessWidget {
                     // 기본 옵션 3
                     // 실물 기기로, 두손가락으로 탭을 해서, 늘리거나, 줄이기 작업.
                     // 👇 Pan 대신 확대/축소(Scale) 옵션을 추가합니다.
-                    // onScaleStart: (details) {
-                    //   print('확대/축소 시작!');
-                    // },
-                    // onScaleUpdate: (details) {
-                    //   // details.scale 값이 1.0보다 크면 확대, 작으면 축소입니다.
-                    //   print('확대/축소 중... 현재 배율: ${details.scale}');
-                    // },
-                    // onScaleEnd: (details) {
-                    //   print('확대/축소 종료!');
-                    // },
+                    onScaleStart: (details) {
+                      print('확대/축소 시작!');
+                    },
+                    onScaleUpdate: (details) {
+                      // details.scale 값이 1.0보다 크면 확대, 작으면 축소입니다.
+                      print('확대/축소 중... 현재 배율: ${details.scale}');
+                    },
+                    onScaleEnd: (details) {
+                      print('확대/축소 종료!');
+                    },
                     child: Container( // 임의의 빨간 박스 넣었다 대신에, 텍스트, 버튼, 다른  UI 가능.
                       decoration: BoxDecoration(color: Colors.red),
-                      width: 100.0,
-                      height: 100.0,
+                      width: 300.0,
+                      height: 300.0,
                     ),
                   ),
                 ),
@@ -155,7 +155,7 @@ class MyAppTest extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16.0),
                   ),
                   height: 200.0,
-                  width: 100.0,
+                  width: 200.0,
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -179,13 +179,13 @@ class MyAppTest extends StatelessWidget {
                   height: 100.0,
                   width: 100.0,
                   child: ColoredBox(
-                      color: Colors.red
+                      color: Colors.yellow
                   ),
                 ),
                 // 패딩만 적용
                 Container(
                   width: 200.0, height: 200.0,
-                  color: Colors.blue,
+                  color: Colors.green,
                   child: Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Container(color: Colors.red, width: 50.0, height: 50.0),
@@ -222,7 +222,7 @@ class MyAppTest extends StatelessWidget {
                   height: 500,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(height: 50.0, width: 50.0, color: Colors.red),
                       SizedBox(height: 12.0),
@@ -253,8 +253,11 @@ class MyAppTest extends StatelessWidget {
                   height: 500,
                   child: Column(
                     children: [
-                      Expanded(child: Container(color: Colors.green)),  // 1/2
+                      Expanded(child: Container(color: Colors.yellow)),  // 1/2
                       Expanded(child: Container(color: Colors.red)),   // 1/2
+                      Expanded(child: Container(color: Colors.green)),   // 1/2
+                      Expanded(child: Container(color: Colors.purple)),   // 1/2
+                      Expanded(child: Container(color: Colors.pink)),   // 1/2
                     ],
                   ),
                 ),

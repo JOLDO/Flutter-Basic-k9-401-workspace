@@ -16,7 +16,7 @@ class MainScreen extends StatelessWidget {
             Center(
               // child: FlutterLogo(size: 100)
               child: Image.asset(
-                'assets/images/logo.png',
+                'assets/images/logo2.png',
                 width: 200,
                 height: 200,
                 fit: BoxFit.contain,
