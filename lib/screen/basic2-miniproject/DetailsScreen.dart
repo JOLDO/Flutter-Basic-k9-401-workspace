@@ -13,7 +13,7 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('상세 화면')),
       body: SafeArea(
-        child: Column(
+        child: ListView(
           children: [
             Container(
               width: double.infinity,
@@ -58,9 +58,21 @@ class DetailsScreen extends StatelessWidget {
                 ),
               ),
             ),
+
+            // 리스트뷰 복사3, 스크롤 방향을 가로 방향으로 변경하고,
+            // 이미지를 이용해보기,
+            buildHorizontalImageList("샘플이미지 리스트뷰1"),
+            // 리스트뷰 복사3
+
             // 리스트 뷰 빌더 예시 복사
-            Expanded(
+            // 수정, Expanded 제거하고,
+            // 내부 리스트에 shrinkWrap: true와
+            // physics: const NeverScrollableScrollPhysics()를 추가하여 부모 스크롤에 포함시키기
+            SizedBox(
+              height: 300,
               child: ListView.builder(
+                // shrinkWrap: true, // [중요] 내부 리스트가 필요한 만큼만 높이 차지
+                // physics: const NeverScrollableScrollPhysics(), // [중요] 부모 스크롤 사용
                 padding: const EdgeInsets.all(8),
                 itemCount: 15,
                 itemBuilder: (context, index) {
@@ -82,9 +94,18 @@ class DetailsScreen extends StatelessWidget {
             ),
             //리스트 뷰 빌더 예시 복사
 
+
+            // 리스트뷰 복사3, 스크롤 방향을 가로 방향으로 변경하고,
+            // 이미지를 이용해보기,
+            buildHorizontalImageList("샘플이미지 리스트뷰2"),
+            // 리스트뷰 복사3
+
             // 리스트뷰 복사2
-            Expanded(
+            SizedBox(
+              height: 300,
               child: ListView.builder(
+                // shrinkWrap: true, // [중요] 내부 리스트가 필요한 만큼만 높이 차지
+                // physics: const NeverScrollableScrollPhysics(), // [중요] 부모 스크롤 사용
                 itemCount: 20, // 총 20개의 아이템을 만들겠다!
                 itemBuilder: (context, index) {
                   // index는 0부터 19까지 자동으로 증가합니다.
@@ -100,8 +121,11 @@ class DetailsScreen extends StatelessWidget {
             // 리스트뷰 복사2
 
             // 리스트뷰 복사3
-            Expanded(
+            SizedBox(
+              height: 300,
               child: ListView.separated(
+                // shrinkWrap: true, // [중요] 내부 리스트가 필요한 만큼만 높이 차지
+                // physics: const NeverScrollableScrollPhysics(), // [중요] 부모 스크롤 사용
                 itemCount: 10,
                 itemBuilder: (context, index) => ListTile(title: Text('아이템 $index')),
                 // 각 아이템 사이에 들어갈 위젯을 정해줍니다.
@@ -115,34 +139,14 @@ class DetailsScreen extends StatelessWidget {
 
             // 리스트뷰 복사4, 스크롤 방향을 가로 방향으로 변경하고,
             // 이미지를 이용해보기,
-            SizedBox(
-              height: 200,
-              child: ListView.builder(
-                // 중요, 기본 나열 방식이 세로 방향이 기본값인데,
-                // 가로 방향 옵션으로 변경.
-                scrollDirection: Axis.horizontal,
-                // padding: const EdgeInsets.all(8),
-                itemCount: 6,
-                itemBuilder: (context, index) {
-                  // index : 0 ~ 부터 시작
-                  int imageNumber = index + 1;
-                  return  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset(
-                      'assets/images/logo${imageNumber}.png',
-                      width: 200,
-                      height: 200,
-                      fit: BoxFit.contain,
-                    ),
-                  );
-                },
-              ),
-            ),
-
+            buildHorizontalImageList("샘플이미지 리스트뷰3"),
             // 리스트뷰 복사4
 
-            Expanded(
+            SizedBox(
+              height: 300,
               child: ListView(
+                // shrinkWrap: true, // [중요] 내부 리스트가 필요한 만큼만 높이 차지
+                // physics: const NeverScrollableScrollPhysics(), // [중요] 부모 스크롤 사용
                 children: List.generate(
                   20,
                       (index) => ListTile(
@@ -158,4 +162,42 @@ class DetailsScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget buildHorizontalImageList(String label){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(padding: const EdgeInsetsGeometry.all(8.0),
+            child : Text(label,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)
+              ,)
+        ),
+        SizedBox(
+          height: 200,
+          child: ListView.builder(
+            // 중요, 기본 나열 방식이 세로 방향이 기본값인데,
+            // 가로 방향 옵션으로 변경.
+            scrollDirection: Axis.horizontal,
+            // padding: const EdgeInsets.all(8),
+            itemCount: 6,
+            itemBuilder: (context, index) {
+              // index : 0 ~ 부터 시작
+              int imageNumber = index + 1;
+              return  Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset(
+                  'assets/images/logo${imageNumber}.png',
+                  width: 200,
+                  height: 200,
+                  fit: BoxFit.contain,
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+
+  }
+
 }
