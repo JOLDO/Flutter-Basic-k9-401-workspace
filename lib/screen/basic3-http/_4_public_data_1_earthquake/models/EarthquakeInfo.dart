@@ -1,8 +1,8 @@
 class EarthquakeInfo {
-  final String originTime;  // 발생 시각
-  final double magnitude;   // 규모
-  final String location;    // 도로 명 (위치)
-  final double depth;       // 진원 깊이 (km)
+  final String originTime;
+  final double magnitude;
+  final String location;
+  final double depth;
 
   EarthquakeInfo({
     required this.originTime,
@@ -11,7 +11,6 @@ class EarthquakeInfo {
     required this.depth,
   });
 
-  // JSON -> 객체 변환 (factory 생성자)
   factory EarthquakeInfo.fromJson(Map<String, dynamic> json) {
     return EarthquakeInfo(
       originTime: json['originTime']?.toString() ?? '',

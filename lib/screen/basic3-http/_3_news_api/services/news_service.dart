@@ -5,7 +5,7 @@ import '../models/news_article.dart';
 class NewsService {
   // newsapi.org 무료 Developer 키 발급
   // https://newsapi.org/register
-  static const String _apiKey = '본인의 api 키';
+  static const String _apiKey = 'b7adb4f936494b3bac62f446ab7686cb';
   static const String _baseUrl = 'https://newsapi.org/v2/top-headlines';
 
   /// 헤드라인 뉴스 가져오기

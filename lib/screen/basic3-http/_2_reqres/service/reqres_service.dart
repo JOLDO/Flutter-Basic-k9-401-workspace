@@ -5,7 +5,7 @@ import '../model/reqres_user.dart';
 
 class ReqresService {
   static const String _baseUrl = 'https://reqres.in/api/users';
-  static const String _apiKey = '본인의 api 키'; // ← 추가
+  static const String _apiKey = 'pro_dd102b2a35a1df91a227cedfbc8784979d59f12c7fdbfdc53d88922302c30c91'; // ← 추가
 
   // 특정 페이지의 사용자 목록 가져오기 (1페이지당 6명)
   static Future<List<ReqresUser>> fetchUsers({int page = 1}) async {
