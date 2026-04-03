@@ -10,7 +10,7 @@ class EarthquakeApiService {
   // 기존: 'ALRX9...%2F...' → ❌ 이중 인코딩 발생
   // 수정: 'ALRX9.../...'  → ✅ Uri가 올바르게 인코딩
   static const String _serviceKey =
-      '본인의 api 키';
+      '본인의 api 키2';
 
 
   static Future<List<EarthquakeInfo>> fetchEarthquakes({
