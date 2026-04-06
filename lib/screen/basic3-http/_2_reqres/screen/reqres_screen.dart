@@ -1,3 +1,4 @@
+import 'package:busanit_401_k9_flutter_project/screen/basic3-http/_2_reqres/screen/reqres_user_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../model/reqres_user.dart';
@@ -98,15 +99,26 @@ class _ReqresScreenState extends State<ReqresScreen> {
             itemBuilder: (context, index) {
               final user = users[index];
               return ListTile(
+                // 탭을 했을 경우, 이벤트 핸들러 효과 추가하기.
+                onTap: () {
+                  Navigator.push(context, // 알아두기, 따로 , 라우팅 하는 방법
+                      MaterialPageRoute(
+                          builder: (context) => ReqresUserDetailScreen(user: user))
+                  );
+                },
+
                 // 아바타 이미지: 네트워크 이미지 로드
-                leading: CircleAvatar(
-                  radius: 28,
-                  backgroundImage: NetworkImage(user.avatar),
-                  // 이미지 로딩 전 플레이스홀더
-                  onBackgroundImageError: (_, __) {},
-                  child: user.avatar.isEmpty
-                      ? Text(user.firstName[0]) // 이미지 없을 때 이니셜
-                      : null,
+                leading: Hero(
+                  tag: 'reqres_avatar_${user.id}',
+                  child: CircleAvatar(
+                    radius: 28,
+                    backgroundImage: NetworkImage(user.avatar),
+                    // 이미지 로딩 전 플레이스홀더
+                    onBackgroundImageError: (_, __) {},
+                    child: user.avatar.isEmpty
+                        ? Text(user.firstName[0]) // 이미지 없을 때 이니셜
+                        : null,
+                  ),
                 ),
                 title: Text(
                   user.fullName, // firstName + lastName
