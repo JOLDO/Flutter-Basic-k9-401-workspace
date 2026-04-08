@@ -148,29 +148,43 @@ class _DbBasicScreenState extends State<DbBasicScreen> {
       // ── AppBar ─────────────────────────────────────────
       // ── AppBar ─────────────────────────────────────────
       appBar: AppBar(
-        // titleSpacing을 0으로 설정하여 입력창 공간을 최대로 확보합니다.
         titleSpacing: 0,
         title: _showSearch
-            ? Padding(
-          // 좌우 여백을 주어 아이콘과 겹치지 않게 조절합니다.
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+            ? Container(
+          margin: const EdgeInsets.symmetric(horizontal: 12), // 좌우 여백 확보
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.white, // ⚪ 배경색: 흰색
+            borderRadius: BorderRadius.circular(8), // 둥근 모서리
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 4,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
           child: TextField(
             controller: _searchCtrl,
             autofocus: true,
-            // 🔴 수정 1: 텍스트를 수직 중앙으로 정렬 (한글 깨짐 방지 핵심)
             textAlignVertical: TextAlignVertical.center,
+            // ⚫ 입력 글자 스타일: 검정색
+            style: const TextStyle(
+              color: Colors.black87,
+              fontSize: 16,
+              textBaseline: TextBaseline.alphabetic,
+            ),
             decoration: InputDecoration(
               hintText: '검색어 입력...',
+              // 힌트 글자 스타일: 흐린 회색
+              hintStyle: const TextStyle(color: Colors.grey, fontSize: 15),
+              isDense: true,
+              contentPadding: const EdgeInsets.symmetric(horizontal: 12),
               border: InputBorder.none,
-              hintStyle: const TextStyle(color: Colors.white70, fontSize: 16),
-              // 🔴 수정 2: 내부 여백을 주어 글자 위아래가 잘리지 않게 함
-              contentPadding: const EdgeInsets.symmetric(vertical: 12),
+              prefixIcon: const Icon(Icons.search, color: Colors.grey, size: 20),
             ),
-            // 🔴 수정 3: 폰트 스타일을 명시적으로 지정
-            style: const TextStyle(color: Colors.white, fontSize: 18),
-            cursorColor: Colors.white,
+            cursorColor: Colors.blue, // 커서 색상
             onChanged: (v) {
-              // 🔴 수정 4: 검색어 변경 시 즉시 UI 반영을 위해 setState 추가
               setState(() {
                 _keyword = v;
                 _currentPage = 0;
